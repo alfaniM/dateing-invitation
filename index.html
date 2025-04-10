@@ -1,226 +1,128 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Date Invitation 💌</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --pink: #ffdde4;
-      --rose: #ffe4e1;
-      --red: #d6336c;
-    }
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom, var(--rose), var(--pink));
-      color: #444;
-      display: flex;
-      justify-content: center;
-      padding: 2rem 1rem;
-    }
-    .container {
-      width: 100%;
-      max-width: 480px;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      text-align: center;
-      animation: fadeIn 1.2s ease-in;
-    }
-    h1 {
-      font-size: 1.7rem;
-      color: var(--red);
-      margin-bottom: 1rem;
-    }
-    .question {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      animation: fadeIn 0.6s ease;
-    }
-    .question.active {
-      display: flex;
-    }
-    label, select, input {
-      width: 100%;
-      font-size: 1rem;
-      margin: 1rem 0;
-    }
-    input, select {
-      padding: 0.6rem;
-      border-radius: 0.8rem;
-      border: 1px solid #ccc;
-    }
-    #preview {
-      margin-top: 1rem;
-      max-width: 100%;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      display: none;
-    }
-    video {
-      width: 100%;
-      border-radius: 1rem;
-      margin-top: 1rem;
-    }
-    #captureBtn {
-      margin-top: 1rem;
-      display: none;
-    }
-    button {
-      background-color: var(--red);
-      color: white;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 1.2rem;
-      margin-top: 1.5rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #c02159;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>💘 Date Invitation 💘</h1>
-    <form id="dateForm">
-      <div class="question active" id="q1">
-        <label>Pilih cara selfie kamu 🥰</label>
-        <select id="selfieMode">
-          <option value="camera">Gunakan Kamera</option>
-          <option value="upload">Upload dari Galeri</option>
-        </select>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="@feelthisray - Script HTML by Feeldream Repl Co" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <title>Surat Spesial Buat Kamu ✨</title>
+    <meta name="description" content="Script HTML Surat Spesial Untukmu." />
+    <meta property="og:title" content="Spesial Untukmu ✨" />
+    <meta property="og:description" content="Aku Ada Surat Spesial Untukmu ✨" />
+    <meta
+      property="og:image"
+      content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMDugl2siKVTnQUhkzqZXmNhnUl_IXm-tsnodgHf4C3dPn6v4gz06nVm1ASqpRXO65Dg3PkYB9bKsThBPUxygLD9Euem9SSTr0LRIGK9x5uaLvK4WIPn6VlSx0qSrPGhTknGVHeVMpioiBcXiqrk-dF3d4SYS8QIkWkDlMgRrdF4vw_iw-EOgTYcwo6xhs/s300/1000314955.jpg"
+    />
+    <meta property="og:image:alt" content="valentine" />
+    <meta property="og:url" content="htmlku.com/suratbuatmu" />
+    <meta property="og:type" content="website" />
 
-        <div id="cameraContainer" style="display: none;">
-          <video id="cameraPreview" autoplay playsinline></video>
-          <button type="button" id="captureBtn">📸 Ambil Foto</button>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Sriracha&family=Itim&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+    <link rel="stylesheet" href="https://htmlku.com/suratbuatmu/style.css" />
+  </head>
+  <body>
+    <div class="overlay">
+      <div class="cover">
+        <p>Coba klik aku dong✨</p>
+        <div class="awalan">
+          <svg class="line" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g transform="translate(2.000000, 2.000000)">
+              <path
+                d="M9.27542857,0.714285714 C14.0030476,0.714285714 17.836381,4.54666667 17.836381,9.2752381 C17.836381,14.0038095 14.0030476,17.8361905 9.27542857,17.8361905 C4.54685714,17.8361905 0.71447619,14.0038095 0.71447619,9.2752381 C0.71447619,4.54666667 4.54685714,0.714285714 9.27542857,0.714285714 Z"
+              ></path>
+              <path
+                d="M17.8989524,16.487619 C18.678,16.487619 19.3094286,17.12 19.3094286,17.8980952 C19.3094286,18.6780952 18.678,19.3095238 17.8989524,19.3095238 C17.1199048,19.3095238 16.4875238,18.6780952 16.4875238,17.8980952 C16.4875238,17.12 17.1199048,16.487619 17.8989524,16.487619 Z"
+              ></path>
+            </g>
+          </svg>
+          <label style="font-size: 16px">from/masbetawigantenk:P</label>
         </div>
-
-        <input type="file" id="selfieUpload" accept="image/*" style="display:none" />
-        <img id="preview" alt="Preview selfie kamu" />
-
-        <button type="button" onclick="nextQuestion(1)">Lanjut</button>
       </div>
-      <div class="question" id="q2">
-        <label for="outfit">Outfit yang kamu pilih</label>
-        <select id="outfit" required>
-          <option value="">Pilih outfit</option>
-          <option value="Kasual">Kasual</option>
-          <option value="Semi-formal">Semi-formal</option>
-          <option value="Formal">Formal</option>
-          <option value="Outfit kejutan 🤫">Outfit kejutan 🤫</option>
-        </select>
-        <button type="button" onclick="nextQuestion(2)">Lanjut</button>
+    </div>
+
+    <div id="bodyblur">
+      <!-- Ganti Wallpaper di Sini -->
+      <img
+        src="https://github-production-user-asset-6210df.s3.amazonaws.com/49194795/432398001-cd5d6885-ecad-4033-aebf-e9d1ae2f04ad.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250410%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250410T164109Z&X-Amz-Expires=300&X-Amz-Signature=e9b4dd4b331b812fa9f5a80380e9e3c227d619e7b0da042d425fb5546d082dfe&X-Amz-SignedHeaders=host"
+        id="wallpaper"
+      />
+      <div id="thisblur"></div>
+    </div>
+
+    <!-- Ganti Audio di Sini -->
+    <audio src="https://feeldreams.github.io/audio/thousand.mp3" id="linkmp3"></audio>
+
+    <div id="envwrap" class="envlope-wrapper">
+      <div id="envelope" class="close">
+        <div class="wax-seal"></div>
+        <div class="front flap"></div>
+        <div class="front pocket"></div>
+        <div class="letter">
+          <div class="letter-corner corner-tl"></div>
+          <div class="letter-corner corner-br"></div>
+          <div class="message">
+            <p>Alooo Incesss! 🩷</p>
+            <p>......</p>
+          </div>
+        </div>
+        <div class="hearts">
+          <div class="heart a1"></div>
+          <div class="heart a2"></div>
+          <div class="heart a3"></div>
+        </div>
+        <div class="sparkles">
+          <div class="sparkle s1"></div>
+          <div class="sparkle s2"></div>
+          <div class="sparkle s3"></div>
+        </div>
       </div>
-      <div class="question" id="q3">
-        <label>Tiga pilihan tanggal</label>
-        <input type="date" id="tanggal1" required />
-        <input type="date" id="tanggal2" required />
-        <input type="date" id="tanggal3" required />
-        <button type="button" onclick="nextQuestion(3)">Lanjut</button>
+    </div>
+    <div class="reset">
+      <button id="open">Buka Dong 🩷</button>
+    </div>
+
+    <div class="stiker">
+      <img id="main-stiker" src="https://htmlku.com/0/panda/cinta.gif" />
+      <img id="stikerAlt1" src="https://htmlku.com/0/panda/terlope.gif" />
+    </div>
+
+    <div class="container" id="container">
+      <p class="titleC"><b>Alooo Kamuuu! 😻</b></p>
+      <p class="messageC"></p>
+    </div>
+
+    <!-- Isi Pesan Surat Di Sini -->
+    <div class="hidden">
+      <p id="pesanSurat1"><i class="fontAlt">Happy Birthday Sayang</i> 🥳</p>
+      <p id="pesanSurat2">
+        Selamat ulang tahun, inces manisku. Di hari yang indah ini, aku cuma ingin kamu tahu betapa berharganya kamu buatku. Hadirmu itu kayak puisi yang nggak pernah selesai—selalu indah, selalu menenangkan. Kamu adalah semesta kecil yang
+        mampu membuat hariku terasa lebih hidup. Terima kasih sudah tumbuh sekuat itu, tetap lembut meski dunia kadang keras. Doaku, semoga kamu selalu dikelilingi cinta yang hangat, tawa yang tulus, dan langkah-langkah yang ringan menuju
+        mimpi-mimpi indahmu. Tetap jadi kamu yang manis, lucu, dan penuh cahaya. Aku sayang kamu, selalu, tanpa henti.
+      </p>
+      <p id="pesanSurat3">Sekali lagi<br /><i class="fontAlt">Happy Birthday</i> yaa 😻💐</p>
+    </div>
+
+    <div id="scontainer">
+      <div class="swrapper">
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
-      <div class="question" id="q4">
-        <label>Tiga pilihan waktu (format HH:MM)</label>
-        <input type="time" id="waktu1" required />
-        <input type="time" id="waktu2" required />
-        <input type="time" id="waktu3" required />
-        <button type="button" onclick="nextQuestion(4)">Lanjut</button>
-      </div>
-      <div class="question" id="q5">
-        <p>Terima kasih sayang! 🥰<br>Kalau udah yakin, klik tombol di bawah ini ya~</p>
-        <button type="submit">Kirim Konfirmasi 💖</button>
-      </div>
-    </form>
-  </div>
+    </div>
 
-  <script>
-    function nextQuestion(current) {
-      document.getElementById(`q${current}`).classList.remove('active');
-      document.getElementById(`q${current + 1}`).classList.add('active');
-    }
-
-    const selfieMode = document.getElementById('selfieMode');
-    const selfieUpload = document.getElementById('selfieUpload');
-    const preview = document.getElementById('preview');
-    const cameraContainer = document.getElementById('cameraContainer');
-    const cameraPreview = document.getElementById('cameraPreview');
-    const captureBtn = document.getElementById('captureBtn');
-    let stream;
-
-    selfieMode.addEventListener('change', async function () {
-      cameraContainer.style.display = 'none';
-      selfieUpload.style.display = 'none';
-      preview.style.display = 'none';
-
-      if (this.value === 'camera') {
-        cameraContainer.style.display = 'block';
-        captureBtn.style.display = 'inline-block';
-        try {
-          stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
-          cameraPreview.srcObject = stream;
-        } catch (err) {
-          alert('Tidak bisa mengakses kamera 😢');
-        }
-      } else {
-        selfieUpload.style.display = 'block';
-      }
-    });
-
-    captureBtn.addEventListener('click', function () {
-      const canvas = document.createElement('canvas');
-      canvas.width = cameraPreview.videoWidth;
-      canvas.height = cameraPreview.videoHeight;
-      canvas.getContext('2d').drawImage(cameraPreview, 0, 0);
-      const dataURL = canvas.toDataURL('image/png');
-      preview.src = dataURL;
-      preview.style.display = 'block';
-    });
-
-    selfieUpload.addEventListener('change', function () {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          preview.src = e.target.result;
-          preview.style.display = 'block';
-        }
-        reader.readAsDataURL(file);
-      }
-    });
-
-    document.getElementById('dateForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const outfit = document.getElementById('outfit').value;
-      const t1 = document.getElementById('tanggal1').value;
-      const t2 = document.getElementById('tanggal2').value;
-      const t3 = document.getElementById('tanggal3').value;
-      const w1 = document.getElementById('waktu1').value;
-      const w2 = document.getElementById('waktu2').value;
-      const w3 = document.getElementById('waktu3').value;
-
-      const pesan = `Hai sayang 😘%0A%0A`
-        + `Aku udah siap ngedate nih! 💕%0A`
-        + `👗 Outfit: ${outfit}%0A`
-        + `📅 Pilihan tanggal: ${t1}, ${t2}, ${t3}%0A`
-        + `🕐 Pilihan waktu: ${w1}, ${w2}, ${w3}%0A%0A`
-        + `Tinggal kamu yang tentuin yaa 😚`
-
-      const linkWa = `https://wa.me/+6281555784430?text=${encodeURI(pesan)}`;
-      window.open(linkWa, '_blank');
-    });
-  </script>
-</body>
+    <script src="https://htmlku.com/suratbuatmu/script.js"></script>
+  </body>
 </html>
