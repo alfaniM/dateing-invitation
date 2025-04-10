@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Invitation 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ffdde4;
+      --rose: #ffe4e1;
+      --red: #d6336c;
+    }
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom, var(--rose), var(--pink));
+      color: #444;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+      animation: fadeIn 1.2s ease-in;
+    }
+    h1 {
+      font-size: 1.7rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .question {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 0.6s ease;
+    }
+    .question.active {
+      display: flex;
+    }
+    label, select, input {
+      width: 100%;
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+    input, select {
+      padding: 0.6rem;
+      border-radius: 0.8rem;
+      border: 1px solid #ccc;
+    }
+    #preview {
+      margin-top: 1rem;
+      max-width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: none;
+    }
+    video {
+      width: 100%;
+      border-radius: 1rem;
+      margin-top: 1rem;
+    }
+    #captureBtn {
+      margin-top: 1rem;
+      display: none;
+    }
+    button {
+      background-color: var(--red);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 1.2rem;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #c02159;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💘 Date Invitation 💘</h1>
+    <form id="dateForm">
+      <div class="question active" id="q1">
+        <label>Pilih cara selfie kamu 🥰</label>
+        <select id="selfieMode">
+          <option value="camera">Gunakan Kamera</option>
+          <option value="upload">Upload dari Galeri</option>
+        </select>
+
+        <div id="cameraContainer" style="display: none;">
+          <video id="cameraPreview" autoplay playsinline></video>
+          <button type="button" id="captureBtn">📸 Ambil Foto</button>
+        </div>
+
+        <input type="file" id="selfieUpload" accept="image/*" style="display:none" />
+        <img id="preview" alt="Preview selfie kamu" />
+
+        <button type="button" onclick="nextQuestion(1)">Lanjut</button>
+      </div>
+      <div class="question" id="q2">
+        <label for="outfit">Outfit yang kamu pilih</label>
+        <select id="outfit" required>
+          <option value="">Pilih outfit</option>
+          <option value="Kasual">Kasual</option>
+          <option value="Semi-formal">Semi-formal</option>
+          <option value="Formal">Formal</option>
+          <option value="Outfit kejutan 🤫">Outfit kejutan 🤫</option>
+        </select>
+        <button type="button" onclick="nextQuestion(2)">Lanjut</button>
+      </div>
+      <div class="question" id="q3">
+        <label>Tiga pilihan tanggal</label>
+        <input type="date" id="tanggal1" required />
+        <input type="date" id="tanggal2" required />
+        <input type="date" id="tanggal3" required />
+        <button type="button" onclick="nextQuestion(3)">Lanjut</button>
+      </div>
+      <div class="question" id="q4">
+        <label>Tiga pilihan waktu (format HH:MM)</label>
+        <input type="time" id="waktu1" required />
+        <input type="time" id="waktu2" required />
+        <input type="time" id="waktu3" required />
+        <button type="button" onclick="nextQuestion(4)">Lanjut</button>
+      </div>
+      <div class="question" id="q5">
+        <p>Terima kasih sayang! 🥰<br>Kalau udah yakin, klik tombol di bawah ini ya~</p>
+        <button type="submit">Kirim Konfirmasi 💖</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function nextQuestion(current) {
+      document.getElementById(`q${current}`).classList.remove('active');
+      document.getElementById(`q${current + 1}`).classList.add('active');
+    }
+
+    const selfieMode = document.getElementById('selfieMode');
+    const selfieUpload = document.getElementById('selfieUpload');
+    const preview = document.getElementById('preview');
+    const cameraContainer = document.getElementById('cameraContainer');
+    const cameraPreview = document.getElementById('cameraPreview');
+    const captureBtn = document.getElementById('captureBtn');
+    let stream;
+
+    selfieMode.addEventListener('change', async function () {
+      cameraContainer.style.display = 'none';
+      selfieUpload.style.display = 'none';
+      preview.style.display = 'none';
+
+      if (this.value === 'camera') {
+        cameraContainer.style.display = 'block';
+        captureBtn.style.display = 'inline-block';
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+          cameraPreview.srcObject = stream;
+        } catch (err) {
+          alert('Tidak bisa mengakses kamera 😢');
+        }
+      } else {
+        selfieUpload.style.display = 'block';
+      }
+    });
+
+    captureBtn.addEventListener('click', function () {
+      const canvas = document.createElement('canvas');
+      canvas.width = cameraPreview.videoWidth;
+      canvas.height = cameraPreview.videoHeight;
+      canvas.getContext('2d').drawImage(cameraPreview, 0, 0);
+      const dataURL = canvas.toDataURL('image/png');
+      preview.src = dataURL;
+      preview.style.display = 'block';
+    });
+
+    selfieUpload.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('dateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const outfit = document.getElementById('outfit').value;
+      const t1 = document.getElementById('tanggal1').value;
+      const t2 = document.getElementById('tanggal2').value;
+      const t3 = document.getElementById('tanggal3').value;
+      const w1 = document.getElementById('waktu1').value;
+      const w2 = document.getElementById('waktu2').value;
+      const w3 = document.getElementById('waktu3').value;
+
+      const pesan = `Hai sayang 😘%0A%0A`
+        + `Aku udah siap ngedate nih! 💕%0A`
+        + `👗 Outfit: ${outfit}%0A`
+        + `📅 Pilihan tanggal: ${t1}, ${t2}, ${t3}%0A`
+        + `🕐 Pilihan waktu: ${w1}, ${w2}, ${w3}%0A%0A`
+        + `Tinggal kamu yang tentuin yaa 😚`
+
+      const linkWa = `https://wa.me/+6281555784430?text=${encodeURI(pesan)}`;
+      window.open(linkWa, '_blank');
+    });
+  </script>
+</body>
+</html>
